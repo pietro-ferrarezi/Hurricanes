@@ -106,7 +106,7 @@ body {
 
 .primary-button {
     background-color: var(--highlight1);
-    box-shadow: 0 0 15px 5px var(--glow);
+    box-shadow: 0 0 10px 3px var(--glow);
 }
 .primary-button:hover {
     background-color: var(--highlight2);
@@ -302,6 +302,12 @@ body {
     height: auto;
 }
 
+@media (max-width: 1195px) {
+    .sponsor-card {
+        width: max-content;
+    }
+}
+
 @media (max-width: 680px) {
     .x-title-size {
         font-size: var(--x-title-textsize-small);
@@ -323,5 +329,13 @@ body {
     }
     .sponsor-logo {
         width: 70px;
+    }
+    .sponsor-card {
+        width: 65vw;
+    }
+    .sponsor-card .title {
+        margin-bottom: 3vh;
+        width: 100%;
+        text-align: center ;
     }
 }
