@@ -1,341 +1,433 @@
+/* ============================================================
+   IMPORTS
+   ============================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Mono+One&family=Rubik:ital,wght@0,300..900;1,300..900&family=Zen+Dots&display=swap');
 
+
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
-    --background: #1b1b1b;
-    --card-background: #262626;
-    --text-color: #e7dfe8;
-    --glow: #b997fe4c;
-    --shadow: #111111;
-    --highlight1: #6729e3;
-    --highlight2: #4b14ba;
-    --confirmed: #641ed4;
-    --x-title-textsize-large: 3rem;
-    --x-title-textsize-small: 2.3rem;
-    --title-textsize-large: 2.5rem;
-    --title-textsize-small: 2rem;
-    --default-textsize-large: 1.25rem;
-    --default-textsize-small: 1rem
-    --detail-textsize-large: 1rem;
-    --detail-textsize-small: 0.7rem;
+    /* Colors */
+    --background:       #1b1b1b;
+    --card-background:  #262626;
+    --text-color:       #e7dfe8;
+    --glow:             #b997fe4c;
+    --shadow:           #111111;
+    --highlight1:       #6729e3;
+    --highlight2:       #4b14ba;
+    --confirmed:        #641ed4;
+
+    /* Typography scale */
+    --fs-xtitle:  3rem;
+    --fs-title:   2.5rem;
+    --fs-default: 1.25rem;
+    --fs-detail:  1rem;
 }
 
-* {
+
+/* ============================================================
+   RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
     color: var(--text-color);
-    width: fit-content;
-    height: fit-content;
-    top: 0;
-    left: 0;
-    scrollbar-width: thin;  
-    scrollbar-color: var(--background) var(--card-background); 
 }
 
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--background) var(--card-background);
+}
+
+::-webkit-scrollbar       { width: 12px; }
+::-webkit-scrollbar-track { background: var(--card-background); border-radius: 10px; }
+::-webkit-scrollbar-thumb { background: var(--background); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--highlight2); }
+
+
+/* ============================================================
+   BASE
+   ============================================================ */
 body {
-    width: 100vw;
-    height: 100%;
+    background-color: var(--background);
+    width: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
-.zen-dots-font {
-  font-family: "Zen Dots", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
+
+
+/* ============================================================
+   TYPOGRAPHY — Font families
+   ============================================================ */
+.zen-dots-font {
+    font-family: "Zen Dots", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .rubik-medium-font {
     font-family: "Rubik", sans-serif;
     font-weight: 500;
-    font-optical-sizing: auto;
     font-style: normal;
 }
+
 .rubik-medium-italic-font {
     font-family: "Rubik", sans-serif;
     font-weight: 500;
-    font-optical-sizing: auto;
     font-style: italic;
 }
+
 .rubik-semibold-font {
     font-family: "Rubik", sans-serif;
     font-weight: 600;
-    font-optical-sizing: auto;
     font-style: normal;
 }
+
 .rubik-semibold-italic-font {
     font-family: "Rubik", sans-serif;
     font-weight: 600;
-    font-optical-sizing: auto;
     font-style: italic;
 }
+
 .rubik-one-font {
     font-family: "Rubik Mono One", monospace;
     font-weight: 400;
     font-style: normal;
 }
 
-.x-title-size {
-    font-size: var(--x-title-textsize-large);
-}
-.title-size {
-    font-size: var(--title-textsize-large);
-}
-.default-size {
-    font-size: var(--default-textsize-large);
-}
-.detail-size {
-    font-size: var(--detail-textsize-large);
+
+/* ============================================================
+   TYPOGRAPHY — Size utilities
+   ============================================================ */
+.x-title-size { font-size: var(--fs-xtitle); }
+.title-size    { font-size: var(--fs-title); }
+.default-size  { font-size: var(--fs-default); }
+.detail-size   { font-size: var(--fs-detail); }
+
+.title {
+    font-family: "Rubik", sans-serif;
+    font-weight: 600;
 }
 
-.highlight-text {
-    color: var(--highlight2);
-}
+.highlight-text { color: var(--highlight2); }
 
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
 .default-button {
     width: 20rem;
     height: 3.5rem;
     border-radius: 0.4rem;
-    outline: none;
     border: none;
+    outline: none;
     cursor: pointer;
-    transition: background-color 0.2s ease-out;
     font-family: "Rubik", sans-serif;
     font-weight: 600;
-    font-optical-sizing: auto;
-    font-style: normal;
-    font-size: var(--default-textsize);
+    font-size: var(--fs-default);
+    transition: background-color 0.2s ease-out;
 }
 
 .primary-button {
     background-color: var(--highlight1);
     box-shadow: 0 0 10px 3px var(--glow);
 }
-.primary-button:hover {
-    background-color: var(--highlight2);
-}
+.primary-button:hover { background-color: var(--highlight2); }
 
 .secondary-button {
     background-color: var(--background);
     box-shadow: 0 0 10px 3px var(--shadow);
 }
-.secondary-button:hover {
-    background-color: var(--card-background);
-}
+.secondary-button:hover { background-color: var(--card-background); }
 
-.title {
-    font-family: "Rubik", sans-serif;
-    font-weight: 600;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
 
+/* ============================================================
+   CARD — base
+   ============================================================ */
 .card {
     background-color: var(--card-background);
     border-radius: 0.625rem;
     box-shadow: 2px 2px 7px var(--shadow);
-    padding-inline: 3.5rem;
-    padding-block: 2rem;
+    padding: 2rem 3.5rem;
 }
 
+
+/* ============================================================
+   LAYOUT — Container
+   ============================================================ */
 .container {
-    background-color: var(--background);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10vh;
     width: 100%;
-    height: 100%;
-    overflow-x: inherit;
+    gap: 0;                /* spacing handled per-section with margin-bottom */
 }
 
+
+/* ============================================================
+   SECTION — Header / Hero
+   ============================================================ */
 .main-infos {
     display: flex;
-    margin-top: 5%;
     flex-direction: column;
-}
-.main-header {
+    align-items: center;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
     width: 100%;
+    padding-inline: 1rem;
+    order: 1;
+}
+
+.main-header {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.7vh;
+    text-align: center;
 }
+
+.main-header h1 { text-align: center; }
+
+.year {
+    background-color: var(--highlight2);
+    padding: 0.4rem 3rem;
+    border-radius: 3rem;
+    font-size: var(--fs-default);
+}
+
+.subtitle { text-align: center; }
+
 .main-buttons {
-    margin-top: 10%;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
     gap: 4vh;
+    margin-top: 5%;
 }
 
+
+/* ============================================================
+   SECTION — Sponsors
+   ============================================================ */
 .sponsor-card {
-    width: 75vw;
+    width: min(75vw, 900px);
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 10vh;
+    order: 2;
 }
-.sponsor-display {
-    margin-top: 5%;
+
+.sponsor-card .title {
+    text-align: center;
     width: 100%;
-    /* display: flex;
-    flex-direction: row; */
-    /* flex-wrap: wrap; */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
-    gap: 10px;
-    justify-content: center;
-    justify-items: center;
 }
+
+.sponsor-display {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    justify-items: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
 .sponsor {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1.5vh;
-    padding: 1rem 0.6rem;
-    padding-top: 0;
-    /* border-radius: 0.5rem;
-    box-shadow: 0 0 10px 1px var(--shadow); */
-    flex: 1 1 max-content;
-}
-.sponsor p {
-    text-align: center;
+    padding: 1rem 0.6rem 0;
 }
 
-.copy-and-paste {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 11vh;
-}
-.cpix {
-    background-color: var(--background);
-    border-radius: 8px 0 0 8px;
-    width: 83%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: inset 1px 1px 4px #121212;
-}
-.copy-button {
-    background-color: var(--highlight1);
-    border-radius: 0 8px 8px 0;
-    border: none;
-    width: 17%;
-    height: 100%;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    box-shadow: 1px 1px 5px var(--shadow), -2px 0 3px #00000064;
-
-}
-.copy-button:hover {
-    background-color: var(--highlight2);
-}
-.donate-infos {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    gap: 6vh;
-    align-items: center;
-    margin-top: 7vh;
-    width: 100%;
-}
-.donate-header {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3vh;
-}
-.donate-card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
-.year {
-    background-color: var(--highlight2);
-    width: 30%;
-    text-align: center;
-    border-radius: 3rem;
-    padding-block: 1%;
-}
-.confirmed-copied-div {
-    display: none;
-    background-color: var(--confirmed);
-    padding: 1vw;
-    position: fixed;
-    top: auto;
-    bottom: 3vh;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1000;
-    border-radius: 0.3rem;
-}
-.confirmed-copied-text {
-    color: var(--text-color);
-}
-
-.subtitle {
-    text-align: center;
-}
-
-::-webkit-scrollbar {
-  width: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--card-background);    
-  border-radius: 10px;   
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--background);       
-  border-radius: 10px;   
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--highlight2);      
-}
+.sponsor p { text-align: center; }
 
 .sponsor-logo {
     width: 100px;
     height: auto;
 }
 
-@media (max-width: 1195px) {
-    .sponsor-card {
-        width: max-content;
+
+/* ============================================================
+   SECTION — Donate
+   ============================================================ */
+.donate-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10vh;
+    width: min(75vw, 600px);
+    order: 3;
+}
+
+.donate-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3vh;
+    width: 100%;
+}
+.donate-header p {
+    text-align: center;
+}
+
+.donate-infos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6vh;
+    margin-top: 7vh;
+    width: 100%;
+}
+
+/* PIX copy-and-paste row */
+.copy-and-paste {
+    display: flex;
+    align-items: stretch;
+    width: 90%;
+    height: 4rem;
+}
+
+.cpix {
+    flex: 1;
+    min-width: 0;            /* allows text truncation inside flex */
+    background-color: var(--background);
+    border-radius: 8px 0 0 8px;
+    box-shadow: inset 1px 1px 4px #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding-inline: 0.75rem;
+}
+
+.cpix p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
+    text-align: center;
+}
+
+.copy-button {
+    flex-shrink: 0;
+    width: 4rem;
+    background-color: var(--highlight1);
+    border-radius: 0 8px 8px 0;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease-in-out;
+    box-shadow: 1px 1px 5px var(--shadow), -2px 0 3px #00000064;
+}
+.copy-button:hover { background-color: var(--highlight2); }
+
+.copy-button-img { width: 1.8rem; }
+
+
+/* ============================================================
+   TOAST — "Copiado!"
+   ============================================================ */
+.confirmed-copied-div {
+    display: none;
+    background-color: var(--confirmed);
+    padding: 0.6rem 1.2rem;
+    position: fixed;
+    bottom: 3vh;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    border-radius: 0.3rem;
+    white-space: nowrap;
+}
+
+.confirmed-copied-text { color: var(--text-color); }
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer { width: 100%; }
+
+
+/* ============================================================
+   RESPONSIVE — tablet (≤ 900px)
+   ============================================================ */
+@media (max-width: 900px) {
+    .sponsor-card,
+    .donate-card {
+        width: min(88vw, 600px);
+    }
+
+    .card {
+        padding: 2rem 2rem;
     }
 }
 
-@media (max-width: 680px) {
-    .x-title-size {
-        font-size: var(--x-title-textsize-small);
+
+/* ============================================================
+   RESPONSIVE — mobile (≤ 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+    :root {
+        --fs-xtitle:  2.3rem;
+        --fs-title:   2rem;
+        --fs-default: 1rem;
+        --fs-detail:  0.75rem;
     }
-    .title-size {
-        font-size: var(--title-textsize-small);
-    }
-    .default-size {
-        font-size: var(--default-textsize-small);
-    }
-    .detail-size {
-        font-size: var(--detail-textsize-small);
-    }
+
+    .year { display: none; }
+
     .main-infos {
-        margin-top: 10%;
+        margin-top: 8vh;
+        margin-bottom: 8vh;
     }
-    .year {
-        display: none;
+
+    .card {
+        padding: 1.5rem 1.25rem;
     }
-    .sponsor-logo {
-        width: 70px;
+
+    .sponsor-card,
+    .donate-card {
+        width: 90vw;
     }
+
     .sponsor-card {
-        width: 65vw;
+        order: 3;
     }
-    .sponsor-card .title {
-        margin-bottom: 3vh;
-        width: 100%;
-        text-align: center ;
+    .donate-card {
+        order: 2;
+    }
+
+    .sponsor-logo { width: 70px; }
+
+    .default-button {
+        width: min(16rem, 80vw);
+        height: 3rem;
+    }
+
+    .copy-and-paste { height: 3.3rem; width: 100%; }
+    .copy-button     { width: 3.2rem; }
+    .copy-button-img { width: 1.3rem; }
+
+    .sponsor-display {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     }
 }

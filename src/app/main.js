@@ -16,4 +16,4 @@ app.get("/donate", (req, res) => {
     res.sendFile(path.join(__dirname, "../../Front/views", "donate_area.html"))
 })
 
-app.listen(PORT, () => console.log(`Server Running! Link: http://localhost:${PORT}`))
+app.listen(PORT, '0.0.0.0', () => console.log(`Server Running! Link: http://localhost:${PORT}`))

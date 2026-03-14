@@ -4,13 +4,26 @@ const payload = "00020126580014BR.GOV.BCB.PIX0136c12ec579-60a6-4af8-b42b-79c1b30
 async function copyPayload() {
     try {
         clearTimeout(timeoutCopiedConfirmation)
-        await navigator.clipboard.writeText(payload);
+
+        if (navigator.clipboard) {
+            await navigator.clipboard.writeText(payload)
+        } else {
+            const textarea = document.createElement("textarea")
+            textarea.value = payload
+            document.body.appendChild(textarea)
+            textarea.select()
+            document.execCommand("copy")
+            document.body.removeChild(textarea)
+        }
+
         displayControll(".confirmed-copied-div", "block")
+
         timeoutCopiedConfirmation = setTimeout(() => {
             displayControll(".confirmed-copied-div", "none")
         }, 2000)
+
     } catch (error) {
-        console.log(`Erro?! (Function: copyPayload()): ${error.message}`);
+        console.log(`Erro (copyPayload): ${error.message}`)
     }
 }
 
@@ -25,3 +38,5 @@ function goto_donate() {
         console.log(`Erro?! (Function: goto_donate()): ${error.message}`)
     }
 }
+
+document.querySelector(".copy-button").addEventListener("click", copyPayload)
