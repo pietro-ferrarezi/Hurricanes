@@ -1,2 +1,4 @@
-*/.env
+.env
+**/.env
+**/node_modules/
 Front/public/styles/style_test_dev.css
